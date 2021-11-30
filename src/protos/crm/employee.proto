@@ -1,0 +1,18 @@
+syntax = "proto3";
+package crm;
+option go_package  = "/mypbs";
+
+import "src/protos/profile/project.proto";
+
+message Employee {
+    int32 ID = 1;
+    string Name = 2;
+    repeated Address Addresses = 3;
+    profile.Project Project = 4;
+}
+
+message Address {
+    string street = 1;
+    int32 postcode = 2;
+    string building = 3;
+}
