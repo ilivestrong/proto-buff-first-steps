@@ -10,8 +10,7 @@ import (
 )
 
 func main() {
-	ep := mypbs.Employee{
-		ID:        1,
+	ep := mypbs.EmployeeRequest{
 		Name:      "Deepak Pathak",
 		Addresses: []*mypbs.Address{{Street: "Ratchadaphisek Road", Postcode: 10060, Building: "Whizdom Station Ratchada Thapra"}},
 		Project: &mypbs.Project{
@@ -42,8 +41,8 @@ func main() {
 	if rerr != nil {
 		log.Fatal("Failed to read message from file\n", rerr)
 	}
-	newEmp := &mypbs.Employee{}
+	newEmp := &mypbs.EmployeeRequest{}
 	proto.Unmarshal(in, newEmp)
-	fmt.Printf("\nEmployee name: %s\nID: %d\nBuilding Name: %s\n", (*newEmp).Name, newEmp.ID, newEmp.GetAddresses()[0].GetBuilding())
+	fmt.Printf("\nEmployee name: %s\nBuilding Name: %s\n", (*newEmp).Name, newEmp.GetAddresses()[0].GetBuilding())
 	fmt.Printf("Project: %s, Skills: %s\n", newEmp.Project.Name, newEmp.Project.Skills[0].Name)
 }
